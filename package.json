@@ -1,33 +1,43 @@
 {
-  "private": true,
+  "name": "vue-starter",
+  "version": "0.0.0",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "json-server": "json-server --watch stubs.json --port 3001"
+    "build": "run-p type-check build-only",
+    "test:unit": "vitest --environment jsdom",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "build-only": "vite build",
+    "dev": "vite",
+    "preview": "vite preview --port 4173",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.0",
-    "@pinia/nuxt": "^0.4.2",
     "axios": "^0.27.2",
-    "pinia": "^2.0.22",
-    "vue": "^3.2.39"
+    "pinia": "^2.0.21",
+    "vue": "^3.2.38",
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "^10.0.0",
-    "@nuxtjs/eslint-module": "3.1.0",
-    "@vueuse/core": "^9.2.0",
-    "@vueuse/integrations": "^9.2.0",
-    "@vueuse/nuxt": "^9.2.0",
-    "eslint": "^8.18.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-nuxt": "^3.2.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "json-server": "^0.17.0",
-    "nuxt": "3.0.0-rc.9",
-    "nuxt-windicss": "^2.5.2",
-    "prettier": "^2.7.1"
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@types/jsdom": "^20.0.0",
+    "@types/node": "^16.11.56",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/test-utils": "^2.0.2",
+    "@vue/tsconfig": "^0.1.3",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "jsdom": "^20.0.0",
+    "naive-ui": "^2.33.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "typescript": "~4.7.4",
+    "vfonts": "^0.0.3",
+    "vite": "^3.0.9",
+    "vite-plugin-windicss": "^1.8.8",
+    "vitest": "^0.23.0",
+    "vue-cli-plugin-windicss": "~1.1.6",
+    "vue-tsc": "^0.40.7",
+    "windicss": "^3.5.6"
   }
 }
