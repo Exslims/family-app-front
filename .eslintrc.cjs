@@ -12,9 +12,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest"
   },
-  rules: {
-    "@typescript-eslint/consistent-type-imports": "error"
-  },
   settings: {
     "import/core-modules": ["windi.css"]
   }

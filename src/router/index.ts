@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DashboardView from "../components/view/DashboardView.vue";
+import AuthView from "../components/view/AuthView.vue";
 import AnalyticsView from "../components/view/AnalyticsView.vue";
 import TransactionsView from "../components/view/TransactionsView.vue";
 import BudgetsView from "../components/view/BudgetsView.vue";
+import { useAuthStore } from "../stores/auth-store";
 // import BudgetsPage from "../components/view/BudgetsView.vue";
 
 const router = createRouter({
@@ -11,27 +13,44 @@ const router = createRouter({
     {
       path: "/",
       name: "root",
-      redirect: "/dashboard"
+      redirect: "/auth"
+    },
+    {
+      path: "/auth",
+      name: "auth",
+      component: AuthView
     },
     {
       path: "/dashboard",
       name: "dashboard",
-      component: DashboardView
+      component: DashboardView,
+      meta: {
+        needAuth: true
+      }
     },
     {
       path: "/transactions",
       name: "transactions",
-      component: TransactionsView
+      component: TransactionsView,
+      meta: {
+        needAuth: true
+      }
     },
     {
       path: "/budgets",
       name: "budgets",
-      component: BudgetsView
+      component: BudgetsView,
+      meta: {
+        needAuth: true
+      }
     },
     {
       path: "/analytics",
       name: "analytics",
-      component: AnalyticsView
+      component: AnalyticsView,
+      meta: {
+        needAuth: true
+      }
     }
     // {
     //   path: "/about",
@@ -42,6 +61,15 @@ const router = createRouter({
     //   component: () => import("../views/AboutView.vue")
     // }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.needAuth && !authStore.isUserAuthenticated) {
+    next("/auth");
+  } else {
+    next();
+  }
 });
 
 export default router;

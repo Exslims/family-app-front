@@ -2,6 +2,8 @@ import type { UserInfo } from "../models/user";
 import axios from "axios";
 import type { ApiResponse } from "../models/api";
 
+export const USER_API_SERVICE_TOKEN = "userApiService";
+
 export interface IUserApiService {
   fetchUserInfo(): Promise<ApiResponse<UserInfo>>;
 }

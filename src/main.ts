@@ -11,7 +11,8 @@ import "virtual:windi.css";
 
 const app = createApp(App);
 
-app.use(createPinia());
+const pinia = createPinia();
+app.use(pinia);
 app.use(naive);
 app.use(router);
 
